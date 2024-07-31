@@ -1,8 +1,11 @@
-# React + Vite
+# Movies App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+I'm using vite with react for making this project.
 
-Currently, two official plugins are available:
+For file setup all necesosary file and command are bellow.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Install bootstrap and bootstrap-icons for styling and icons, commands (npm i bootstrap and bootstrap-icons);
+- Install Cors for security, commands (npm i cors)
+- Install React Router Dom for rendering Urls, command (npm i react-router-dom)
+- Install React Cookie for storing your data into local storage, command (npm i react-cookie)
+<!-- - Also install Formik hook for forms and use yup library for validation formik form (npm i formik yup) -->
