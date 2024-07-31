@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import { Home } from './components/Home'
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='*' element={<code>Oooo..ww your finding data is not available<Link to='/'>Try Again</Link></code>} />
         </Routes>
       </BrowserRouter>
     </>

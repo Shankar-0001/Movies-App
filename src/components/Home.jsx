@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import './Home.css';
+import { useState } from "react";
 
 export function Home() {
 
@@ -7,6 +8,9 @@ export function Home() {
         const navbar = document.querySelector('.navbarTag');
         navbar.classList.toggle('active');
     }
+
+    const [movie, setMovies] = useState();
+
 
     return (
         <div>
@@ -32,15 +36,19 @@ export function Home() {
                     </ul>
                 </div>
             </div>
-            <div className='bgImage' style={{
-                height: "100vh",
-                width: "100%",
-                backgroundImage: 'url("h1_hero1.jpg")',
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}>
+
+
+
+            {/* Movies Cards */}
+
+            <div className="container">
+                <div className="d-flex align-items-center">
+
+                </div>
 
             </div>
+
+
         </div>
     )
 }

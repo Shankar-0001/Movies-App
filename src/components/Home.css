@@ -10,7 +10,7 @@
     padding: 10px;
     position: fixed;
     align-items: center;
-    background: white;
+    background: rgb(15, 150, 176);
     justify-content: space-between;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .logo {
-    color: black;
+    color: white;
     font-weight: 600;
     font-size: 1.7rem;
     text-decoration: none;
@@ -44,7 +44,7 @@
 }
 
 .link {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
