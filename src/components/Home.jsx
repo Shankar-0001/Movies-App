@@ -1,20 +1,20 @@
 import { Link } from "react-router-dom";
 import './Home.css';
-import { useState } from "react";
+import { MovieCard } from "./Movies-card";
 
 export function Home() {
 
-    const handlMenuClick = () => {
-        const navbar = document.querySelector('.navbarTag');
-        navbar.classList.toggle('active');
-    }
+    // const handlMenuClick = () => {
+    //     const navbar = document.querySelector('.navbarTag');
+    //     navbar.classList.toggle('active');
+    // }
 
-    const [movie, setMovies] = useState();
+
 
 
     return (
         <div>
-            <div className="HeadTag">
+            {/* <div className="HeadTag">
                 <div className='extra container p-0 my-0'>
                     <div>
                         <Link to='#' className='logo'>WebTecH</Link>
@@ -35,18 +35,11 @@ export function Home() {
                         <li><Link to='#' className='link'><span className='bi bi-instagram'></span></Link></li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
+
+            <MovieCard />
 
 
-
-            {/* Movies Cards */}
-
-            <div className="container">
-                <div className="d-flex align-items-center">
-
-                </div>
-
-            </div>
 
 
         </div>
