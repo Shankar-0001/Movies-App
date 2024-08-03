@@ -19,7 +19,7 @@ This project is a React application that allows users to search for movies using
 ## Setup Instructions
 
 ### 1. Clone the repository
-```bash
+
 git clone https://github.com/yourusername/moviesearchapp.git
 cd moviesearchapp
 
@@ -67,10 +67,12 @@ moviesearchapp/
 - CSS
 
 ## Deployment
-- The application is deployed on [Platform Name] and can be accessed at [Live Demo Link].
+- The application is deployed on Vercel and can be accessed at [Movie-App](https://movies-app-two-alpha.vercel.app/).
 
 ## Additional Features
 
 - Error Handling: Displays an error message if the API request fails or returns no results.
 - Responsive Design: Ensures the application works well on both desktop and mobile devices.
+
+**Project Deployement**: This project is deployed by using Vercel.
 
