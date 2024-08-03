@@ -1,71 +1,99 @@
 import { useEffect, useState } from 'react';
-import './Movies-card.css';
 import axios from 'axios';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 export function MovieCard() {
     const [searchQuery, setSearchQuery] = useState('');
-    const [movie, setMovie] = useState({ Title: '', Year: '', Genre: '', Runtime: '', Language: '', imdbRating: '', Poster: '', Plot: '' });
+    const [movies, setMovies] = useState([]);
+    const [selectedMovie, setSelectedMovie] = useState(null);
 
-    function loadMovie(query) {
-        // axios.get(`https://www.omdbapi.com/?t=${query}&apikey=3e67038b`)
-        axios.get(`https: //imdb-movies-web-series-etc-search.p.rapidapi.com/thegodfather.json`)
-            .then((response) => {
-                console.log(response.data);
+    function loadMovies(query) {
+        axios.get(`https://www.omdbapi.com/?s=${query}&apikey=3e67038b`)
+            .then(response => {
                 if (response.data.Response === "True") {
-                    setMovie(response.data);
+                    setMovies(response.data.Search);
                 } else {
-                    alert("Movie not found!");
+                    alert("Movies not found!");
                 }
-            }).catch((e) => {
-                console.log(e);
-            });
+            }).catch(console.error);
     }
 
     useEffect(() => {
-        // Optionally load a default movie on mount
-        loadMovie('Guardians of the Galaxy Vol. 2');
+        loadMovies('the godfather');
     }, []);
 
     const handleSearch = () => {
-        if (searchQuery.trim() !== '') {
-            loadMovie(searchQuery);
+        if (searchQuery.trim()) {
+            loadMovies(searchQuery);
         } else {
             alert('Please enter a movie title');
         }
     };
 
+    const handleMoreClick = (movie) => {
+        setSelectedMovie(movie);
+        const modal = new window.bootstrap.Modal(document.getElementById('movieModal'));
+        modal.show();
+    };
+
     return (
-        <div>
-            {/* Search Bar */}
-            <div className="search-bar">
+        <div className="container mt-5">
+            <div className="search-bar mb-4 d-flex justify-content-center">
                 <input
                     type="text"
+                    className="form-control w-50 p-2 border-2 border-info rounded"
                     placeholder="Search for a movie..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button onClick={handleSearch}>Search</button>
+                <button className="btn btn-info rounded shadow-sm ms-1" onClick={handleSearch}>Search</button>
             </div>
 
-            {/* Movies Cards */}
-            <div className="container-fluid">
-                <div className="container">
-                    <div className="cards">
-                        <div className="cards-header">
-                            <img src={movie.Poster} alt="Movie Poster" />
+            <div className="row">
+                {movies.map(movie => (
+                    <div key={movie.imdbID} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div className="card h-100 shadow-lg rounded-lg overflow-hidden">
+                            <img src={movie.Poster} className="card-img-top" alt={`${movie.Title} Poster`} style={{ height: '200px', objectFit: 'cover' }} />
+                            <div className="card-body d-flex flex-column justify-between p-2">
+                                <h5 className="card-title text-center">{movie.Title}</h5>
+                                <p className="card-text text-center text-muted">Year: {movie.Year}</p>
+                                <p className="card-text text-center text-muted">Type: {movie.Type}</p>
+                            </div>
+                            <button
+                                type='button'
+                                className='btn btn-secondary w-100'
+                                onClick={() => handleMoreClick(movie)}
+                            >
+                                More
+                            </button>
                         </div>
-                        <div className="cards-body">
-                            <div className='cards-title'>
-                                <p>Movie: {movie.Title}</p>
-                                <p>Year: {movie.Year}</p>
-                                <p>Duration: {movie.Runtime}</p>
-                                <p>Genre: {movie.Genre}</p>
-                                <p>Language: {movie.Language}</p>
-                                <p>IMDb Rating: {movie.imdbRating}</p>
-                            </div>
-                            <div className='cards-description'>
-                                <p>Description: {movie.Plot}</p>
-                            </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="modal fade" id="movieModal" tabIndex="-1" aria-labelledby="movieModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-lg">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="movieModalLabel">{selectedMovie?.Title}</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            {selectedMovie && (
+                                <>
+                                    <img src={selectedMovie.Poster} className="img-fluid mb-3" alt={`${selectedMovie.Title} Poster`} />
+                                    <p><strong>Type:</strong> {selectedMovie.Type}</p>
+                                    <p><strong>Year:</strong> {selectedMovie.Year}</p>
+                                    <p><strong>IMDB ID:</strong> {selectedMovie.imdbID}</p>
+                                    <p><strong>Plot:</strong> {selectedMovie.Plot}</p>
+                                    <p><strong>Language:</strong> {selectedMovie.Language}</p>
+                                    <p><strong>IMDb Rating:</strong> {selectedMovie.imdbRating}</p>
+                                </>
+                            )}
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
