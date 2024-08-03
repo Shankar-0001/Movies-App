@@ -74,3 +74,5 @@ moviesearchapp/
 - Error Handling: Displays an error message if the API request fails or returns no results.
 - Responsive Design: Ensures the application works well on both desktop and mobile devices.
 
+
+
