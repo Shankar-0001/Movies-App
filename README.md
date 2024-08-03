@@ -20,7 +20,7 @@ This project is a React application that allows users to search for movies using
 
 ### 1. Clone the repository
 
-git clone https://github.com/yourusername/moviesearchapp.git
+git clone https://github.com/Shankar-0001/Movies-App
 cd moviesearchapp
 
 ## Install dependencies
